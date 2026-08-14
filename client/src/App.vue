@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import { useModal } from './composables/useModal'
 import RegistrationModal from './components/RegistrationModal.vue'
 import FooterSection from './components/FooterSection.vue'
