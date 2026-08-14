@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Beatlan';
+    src: url('/Beatlan101-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  :root {
+    --background: 60 40% 98%; /* #FDFCF6 */
+    --foreground: 0 0% 4%;    /* #0A0A0A */
+    
+    --card: 60 40% 98%;
+    --card-foreground: 0 0% 4%;
+    
+    --popover: 60 40% 98%;
+    --popover-foreground: 0 0% 4%;
+    
+    --primary: 39 98% 57%; /* beatlan-yellow #FDB927 */
+    --primary-foreground: 0 0% 4%;
+    
+    --secondary: 16 88% 55%; /* beatlan-orange #F05A28 */
+    --secondary-foreground: 60 40% 98%;
+    
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+    
+    --accent: 174 65% 34%; /* beatlan-teal #1E9086 */
+    --accent-foreground: 60 40% 98%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 60 40% 98%;
+
+    --border: 0 0% 4%; /* Thick dark borders */
+    --input: 0 0% 80%;
+    --ring: 0 0% 4%;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* Optional: Adding a subtle codex background pattern */
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-beatlan tracking-wide;
+  }
+}
+
+/* Custom Neo-brutalist Utilities */
+@layer utilities {
+  .btn-neo {
+    @apply bg-beatlan-yellow text-beatlan-dark border-4 border-beatlan-dark font-beatlan text-xl tracking-wider py-2 px-6 rounded-none shadow-flat transition-transform hover:-translate-y-1 hover:-translate-x-1 hover:shadow-flat-lg active:translate-y-0 active:translate-x-0 active:shadow-none;
+  }
+  .card-neo {
+    @apply bg-white border-4 border-beatlan-dark rounded-none shadow-flat;
+  }
+}
