@@ -7,11 +7,14 @@ const { isRegistrationModalOpen, closeModal } = useModal()
 const currentStep = ref(1)
 
 const formData = ref({
-  nombre: '',
+  nombres: '',
+  apellidoPaterno: '',
+  apellidoMaterno: '',
   seudonimo: '',
   correo: '',
   telefono: '',
-  ubicacion: '',
+  ciudad: '',
+  estado: '',
   
   rol: '',
   experiencia: 0,
@@ -126,9 +129,17 @@ const finishAndClose = () => {
                 <h3 class="font-beatlan text-3xl text-beatlan-orange mb-6">Datos Personales y de Contacto</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="flex flex-col md:col-span-2">
+                    <label class="font-sans font-bold mb-2">Nombre(s) *</label>
+                    <input type="text" v-model="formData.nombres" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
+                  </div>
                   <div class="flex flex-col">
-                    <label class="font-sans font-bold mb-2">Nombre completo *</label>
-                    <input type="text" v-model="formData.nombre" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
+                    <label class="font-sans font-bold mb-2">Apellido Paterno *</label>
+                    <input type="text" v-model="formData.apellidoPaterno" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
+                  </div>
+                  <div class="flex flex-col">
+                    <label class="font-sans font-bold mb-2">Apellido Materno *</label>
+                    <input type="text" v-model="formData.apellidoMaterno" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
                   </div>
                   <div class="flex flex-col">
                     <label class="font-sans font-bold mb-2">Seudónimo (Opcional)</label>
@@ -138,13 +149,51 @@ const finishAndClose = () => {
                     <label class="font-sans font-bold mb-2">Correo electrónico *</label>
                     <input type="email" v-model="formData.correo" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
                   </div>
-                  <div class="flex flex-col">
+                  <div class="flex flex-col md:col-span-2">
                     <label class="font-sans font-bold mb-2">Número de teléfono *</label>
                     <input type="tel" v-model="formData.telefono" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
                   </div>
-                  <div class="flex flex-col md:col-span-2">
-                    <label class="font-sans font-bold mb-2">Ciudad y Estado/País de residencia *</label>
-                    <input type="text" v-model="formData.ubicacion" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
+                  <div class="flex flex-col">
+                    <label class="font-sans font-bold mb-2">Ciudad *</label>
+                    <input type="text" v-model="formData.ciudad" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans">
+                  </div>
+                  <div class="flex flex-col">
+                    <label class="font-sans font-bold mb-2">Estado *</label>
+                    <select v-model="formData.estado" required class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans bg-white">
+                      <option value="" disabled>Selecciona un estado...</option>
+                      <option value="Aguascalientes">Aguascalientes</option>
+                      <option value="Baja California">Baja California</option>
+                      <option value="Baja California Sur">Baja California Sur</option>
+                      <option value="Campeche">Campeche</option>
+                      <option value="Chiapas">Chiapas</option>
+                      <option value="Chihuahua">Chihuahua</option>
+                      <option value="Ciudad de México">Ciudad de México</option>
+                      <option value="Coahuila">Coahuila</option>
+                      <option value="Colima">Colima</option>
+                      <option value="Durango">Durango</option>
+                      <option value="Estado de México">Estado de México</option>
+                      <option value="Guanajuato">Guanajuato</option>
+                      <option value="Guerrero">Guerrero</option>
+                      <option value="Hidalgo">Hidalgo</option>
+                      <option value="Jalisco">Jalisco</option>
+                      <option value="Michoacán">Michoacán</option>
+                      <option value="Morelos">Morelos</option>
+                      <option value="Nayarit">Nayarit</option>
+                      <option value="Nuevo León">Nuevo León</option>
+                      <option value="Oaxaca">Oaxaca</option>
+                      <option value="Puebla">Puebla</option>
+                      <option value="Querétaro">Querétaro</option>
+                      <option value="Quintana Roo">Quintana Roo</option>
+                      <option value="San Luis Potosí">San Luis Potosí</option>
+                      <option value="Sinaloa">Sinaloa</option>
+                      <option value="Sonora">Sonora</option>
+                      <option value="Tabasco">Tabasco</option>
+                      <option value="Tamaulipas">Tamaulipas</option>
+                      <option value="Tlaxcala">Tlaxcala</option>
+                      <option value="Veracruz">Veracruz</option>
+                      <option value="Yucatán">Yucatán</option>
+                      <option value="Zacatecas">Zacatecas</option>
+                    </select>
                   </div>
                 </div>
               </div>

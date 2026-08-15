@@ -87,10 +87,10 @@ onMounted(() => {
               <tr v-for="reg in registrations" :key="reg.id" class="border-b-2 border-gray-200 hover:bg-yellow-50 transition-colors">
                 <td class="p-4 font-bold text-teal-700">{{ reg.matricula }}</td>
                 <td class="p-4 text-sm text-gray-600">{{ new Date(reg.createdAt).toLocaleDateString() }}</td>
-                <td class="p-4 font-bold">{{ reg.nombre }}</td>
+                <td class="p-4 font-bold">{{ reg.nombres }} {{ reg.apellidoPaterno }} {{ reg.apellidoMaterno }}</td>
                 <td class="p-4 text-blue-600 text-sm"><a :href="'mailto:'+reg.correo">{{ reg.correo }}</a></td>
                 <td class="p-4 text-sm">{{ reg.telefono }}</td>
-                <td class="p-4 text-sm">{{ reg.ubicacion }}</td>
+                <td class="p-4 text-sm">{{ reg.ciudad }}, {{ reg.estado }}</td>
                 <td class="p-4 text-sm">{{ reg.rol }} <span class="text-gray-500">({{ reg.experiencia }} años)</span></td>
                 <td class="p-4 font-bold" :class="reg.matchmaking === 'Sí' ? 'text-green-600' : 'text-gray-400'">{{ reg.matchmaking }}</td>
               </tr>

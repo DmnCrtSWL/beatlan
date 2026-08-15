@@ -10,11 +10,14 @@ datasource db {
 model Registration {
   id               String   @id @default(cuid()) // Unique internal DB ID
   matricula        String   @unique // The 9-digit random ID
-  nombre           String
+  nombres          String
+  apellidoPaterno  String
+  apellidoMaterno  String
   seudonimo        String?
   correo           String   @unique
   telefono         String
-  ubicacion        String
+  ciudad           String
+  estado           String
   
   rol              String
   experiencia      Int

@@ -37,11 +37,14 @@ apiRouter.post('/register', async (req, res) => {
     const registration = await prisma.registration.create({
       data: {
         matricula,
-        nombre: data.nombre,
+        nombres: data.nombres,
+        apellidoPaterno: data.apellidoPaterno,
+        apellidoMaterno: data.apellidoMaterno,
         seudonimo: data.seudonimo || null,
         correo: data.correo,
         telefono: data.telefono,
-        ubicacion: data.ubicacion,
+        ciudad: data.ciudad,
+        estado: data.estado,
         rol: data.rol,
         experiencia: Number(data.experiencia),
         otrosEventos: data.otrosEventos,
