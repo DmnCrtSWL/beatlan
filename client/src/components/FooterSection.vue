@@ -42,18 +42,14 @@
       <!-- Social Grid -->
       <div class="flex flex-col gap-4 text-white md:items-end">
         <h4 class="font-beatlan text-3xl text-beatlan-yellow uppercase mb-2">Redes</h4>
-        <div class="grid grid-cols-2 gap-4">
-          <a href="#" class="w-12 h-12 bg-white flex items-center justify-center border-2 border-transparent hover:border-beatlan-teal hover:bg-beatlan-teal hover:text-beatlan-dark transition-all text-beatlan-dark group">
+        <div class="flex gap-4">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/beatlan.mx" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white flex items-center justify-center border-2 border-transparent hover:border-beatlan-teal hover:bg-beatlan-teal hover:text-beatlan-dark transition-all text-beatlan-dark group">
             <svg class="w-6 h-6 fill-current transition-colors" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path></svg>
           </a>
-          <a href="#" class="w-12 h-12 bg-white flex items-center justify-center border-2 border-transparent hover:border-beatlan-teal hover:bg-beatlan-teal hover:text-beatlan-dark transition-all text-beatlan-dark group">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/beatlan.mx" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white flex items-center justify-center border-2 border-transparent hover:border-beatlan-teal hover:bg-beatlan-teal hover:text-beatlan-dark transition-all text-beatlan-dark group">
             <svg class="w-6 h-6 fill-current transition-colors" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
-          </a>
-          <a href="#" class="w-12 h-12 bg-white flex items-center justify-center border-2 border-transparent hover:border-beatlan-teal hover:bg-beatlan-teal hover:text-beatlan-dark transition-all text-beatlan-dark group">
-            <svg class="w-5 h-5 fill-current transition-colors" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-          </a>
-          <a href="#" class="w-12 h-12 bg-white flex items-center justify-center border-2 border-transparent hover:border-beatlan-teal hover:bg-beatlan-teal hover:text-beatlan-dark transition-all text-beatlan-dark group">
-            <svg class="w-6 h-6 fill-current transition-colors" viewBox="0 0 24 24"><path d="M21.582 6.186a2.686 2.686 0 0 0-1.884-1.895C17.96 3.843 12 3.843 12 3.843s-5.96 0-7.698.448a2.686 2.686 0 0 0-1.884 1.895C1.97 7.933 1.97 12 1.97 12s0 4.067.448 5.814a2.686 2.686 0 0 0 1.884 1.895c1.738.448 7.698.448 7.698.448s5.96 0 7.698-.448a2.686 2.686 0 0 0 1.884-1.895c.448-1.747.448-5.814.448-5.814s0-4.067-.448-5.814zm-11.59 9.38v-7.13L15.932 12l-5.94 3.566z"></path></svg>
           </a>
         </div>
       </div>
