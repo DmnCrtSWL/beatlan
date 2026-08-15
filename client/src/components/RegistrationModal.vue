@@ -23,6 +23,7 @@ const formData = ref({
   organizacion: 'No',
   cualOrganizacion: '',
   
+  actividadSeleccionada: '',
   actividades: [] as string[],
   matchmaking: 'No',
   expectativas: '',
@@ -38,7 +39,8 @@ const axes = [
   "Uso de espacios públicos y privados",
   "Salud pública",
   "Presencia de mujeres en el Hip Hop",
-  "Presencia de comunidades originarias, afromexicanas y LGBT+ en el Hip Hop",
+  "Presencia de comunidades originarias y afromexicanas",
+  "Comunidades LGBT+ en el Hip Hop",
   "Profesionalización artística",
   "Investigación y patrimonio histórico",
   "Criminalización y punitivismo",
@@ -55,10 +57,13 @@ const submitForm = async () => {
   isLoading.value = true
   errorMsg.value = ''
   try {
+    const payload = { ...formData.value }
+    payload.actividades = [payload.actividadSeleccionada]
+    
     const response = await fetch('/beatlan/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData.value)
+      body: JSON.stringify(payload)
     })
     
     const data = await response.json()
@@ -104,7 +109,7 @@ const finishAndClose = () => {
           <div class="flex justify-between items-center mb-10 border-b-4 border-beatlan-dark pb-6 overflow-x-auto whitespace-nowrap">
             <div :class="['flex-1 text-center font-beatlan text-xl uppercase transition-colors px-2', currentStep >= 1 ? 'text-beatlan-teal' : 'text-gray-400']">1. Personales</div>
             <div :class="['flex-1 text-center font-beatlan text-xl uppercase transition-colors border-l-4 border-beatlan-dark px-2', currentStep >= 2 ? 'text-beatlan-teal' : 'text-gray-400']">2. Profesional</div>
-            <div :class="['flex-1 text-center font-beatlan text-xl uppercase transition-colors border-l-4 border-beatlan-dark px-2', currentStep >= 3 ? 'text-beatlan-teal' : 'text-gray-400']">3. Actividades</div>
+            <div :class="['flex-1 text-center font-beatlan text-xl uppercase transition-colors border-l-4 border-beatlan-dark px-2', currentStep >= 3 ? 'text-beatlan-teal' : 'text-gray-400']">3. Mesas</div>
             <div :class="['flex-1 text-center font-beatlan text-xl uppercase transition-colors border-l-4 border-beatlan-dark px-2', currentStep >= 4 ? 'text-beatlan-teal' : 'text-gray-400']">4. Intereses</div>
           </div>
 
@@ -236,13 +241,13 @@ const finishAndClose = () => {
 
               <!-- STEP 3: Actividades de Trabajo -->
               <div v-else-if="currentStep === 3" :key="'step3'" class="space-y-6">
-                <h3 class="font-beatlan text-3xl text-beatlan-orange mb-6">Selección de Actividades</h3>
+                <h3 class="font-beatlan text-3xl text-beatlan-orange mb-6">Selección de Mesas de Diálogo</h3>
                 
                 <div class="flex flex-col mb-6">
-                  <label class="font-sans font-bold mb-4">¿A qué actividad(es) te gustaría unirte? (Selecciona todas las que apliquen)</label>
+                  <label class="font-sans font-bold mb-4">¿A qué mesa de diálogo te gustaría unirte? (Selecciona solo una) *</label>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-60 overflow-y-auto pr-2">
                     <label v-for="(axe, idx) in axes" :key="idx" class="flex items-start gap-3 cursor-pointer p-2 hover:bg-gray-50 border-2 border-transparent hover:border-gray-200">
-                      <input type="checkbox" :value="axe" v-model="formData.actividades" class="mt-1 w-5 h-5 border-2 border-beatlan-dark accent-beatlan-teal flex-shrink-0">
+                      <input type="radio" name="mesa_dialogo" :value="axe" v-model="formData.actividadSeleccionada" required class="mt-1 w-5 h-5 accent-beatlan-teal flex-shrink-0">
                       <span class="font-sans text-sm md:text-base">{{ axe }}</span>
                     </label>
                   </div>
@@ -267,7 +272,7 @@ const finishAndClose = () => {
                 
                 <div class="flex flex-col">
                   <label class="font-sans font-bold mb-2">¿Qué esperas lograr participando en las actividades? *</label>
-                  <p class="text-sm text-gray-500 mb-2">(Ej: conectar para colaboraciones, generar alianzas, documentar proyectos)</p>
+                  <p class="text-sm text-gray-500 mb-2">(Ej: conectar para colaboraciones, generar alianzas, construir propuestas de políticas públicas)</p>
                   <textarea v-model="formData.expectativas" required rows="3" class="border-4 border-beatlan-dark p-3 focus:outline-none focus:ring-0 focus:border-beatlan-teal font-sans"></textarea>
                 </div>
 
