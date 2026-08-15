@@ -14,13 +14,15 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 app.use(cors());
 app.use(express.json());
 
+const apiRouter = express.Router();
+
 // Helper function to generate 9-digit random ID
 const generateMatricula = (): string => {
   return Math.floor(100000000 + Math.random() * 900000000).toString();
 };
 
 // Route: Register new participant
-app.post('/api/register', async (req, res) => {
+apiRouter.post('/register', async (req, res) => {
   try {
     const data = req.body;
     let matricula = generateMatricula();
@@ -64,7 +66,7 @@ app.post('/api/register', async (req, res) => {
 });
 
 // Route: Admin Login
-app.post('/api/auth/login', async (req, res) => {
+apiRouter.post('/auth/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     
@@ -100,7 +102,7 @@ const authenticateJWT = (req: any, res: any, next: any) => {
 };
 
 // Route: Get all registrations (Protected)
-app.get('/api/admin/registrations', authenticateJWT, async (req, res) => {
+apiRouter.get('/admin/registrations', authenticateJWT, async (req, res) => {
   try {
     const registrations = await prisma.registration.findMany({
       orderBy: { createdAt: 'desc' }
@@ -129,6 +131,8 @@ const initializeAdmin = async () => {
     console.log('Waiting for DB to be ready...');
   }
 };
+
+app.use(['/api', '/beatlan/api', '/'], apiRouter);
 
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
