@@ -44,9 +44,35 @@ const axes = [
 
 const nextStep = () => { if (currentStep.value < 4) currentStep.value++ }
 const prevStep = () => { if (currentStep.value > 1) currentStep.value-- }
-const submitForm = () => {
-  console.log('Formulario enviado:', formData.value)
-  alert('¡Registro enviado exitosamente!')
+const isLoading = ref(false)
+const matriculaGenerada = ref('')
+const errorMsg = ref('')
+
+const submitForm = async () => {
+  isLoading.value = true
+  errorMsg.value = ''
+  try {
+    const response = await fetch('/beatlan/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData.value)
+    })
+    
+    const data = await response.json()
+    if (data.success) {
+      matriculaGenerada.value = data.matricula
+    } else {
+      errorMsg.value = data.error || 'Ocurrió un error al registrarte.'
+    }
+  } catch (err) {
+    errorMsg.value = 'Error de conexión con el servidor.'
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const finishAndClose = () => {
+  matriculaGenerada.value = ''
   currentStep.value = 1
   closeModal()
 }
@@ -79,7 +105,20 @@ const submitForm = () => {
             <div :class="['flex-1 text-center font-beatlan text-xl uppercase transition-colors border-l-4 border-beatlan-dark px-2', currentStep >= 4 ? 'text-beatlan-teal' : 'text-gray-400']">4. Intereses</div>
           </div>
 
-          <form @submit.prevent="submitForm" class="relative">
+          <div v-if="matriculaGenerada" class="text-center py-10">
+            <h3 class="text-3xl font-beatlan text-beatlan-teal uppercase mb-4">¡Registro Exitoso!</h3>
+            <p class="font-sans text-xl mb-6">Tu registro ha sido guardado. Esta es tu matrícula única, por favor guárdala para cualquier aclaración:</p>
+            <div class="bg-gray-100 border-4 border-beatlan-dark py-6 px-10 inline-block mb-8 shadow-flat">
+              <span class="font-black text-5xl tracking-widest">{{ matriculaGenerada }}</span>
+            </div>
+            <div>
+              <button @click="finishAndClose" class="btn-neo bg-beatlan-dark text-white hover:bg-gray-800 px-10">
+                Aceptar
+              </button>
+            </div>
+          </div>
+
+          <form v-else @submit.prevent="submitForm" class="relative">
             <Transition name="slide" mode="out-in">
               
               <!-- STEP 1: Datos Personales -->
@@ -218,8 +257,12 @@ const submitForm = () => {
                 Siguiente
               </button>
               
-              <button type="submit" v-if="currentStep === 4" class="btn-neo bg-beatlan-orange text-white border-beatlan-orange hover:bg-orange-600 px-6 sm:px-10">
-                Enviar
+              <div v-if="errorMsg" class="mt-4 p-4 bg-red-100 text-red-700 font-bold border-l-4 border-red-500 text-sm">
+                {{ errorMsg }}
+              </div>
+              
+              <button type="submit" v-if="currentStep === 4" :disabled="isLoading" class="btn-neo bg-beatlan-orange text-white border-beatlan-orange hover:bg-orange-600 px-6 sm:px-10 disabled:opacity-50">
+                {{ isLoading ? 'Enviando...' : 'Enviar' }}
               </button>
             </div>
 

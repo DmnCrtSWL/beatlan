@@ -14,7 +14,7 @@ const axes = [
 </script>
 
 <template>
-  <section id="actividades" class="bg-white py-20 px-6 border-b-4 border-beatlan-dark">
+  <section id="actividades" class="scroll-mt-32 bg-white py-20 px-6 border-b-4 border-beatlan-dark">
     <div class="max-w-7xl mx-auto">
       
       <div class="text-center mb-16">

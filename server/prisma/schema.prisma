@@ -7,12 +7,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Example model for the Hip Hop Summit registration
-model Attendee {
-  id        Int      @id @default(autoincrement())
-  firstName String
-  lastName  String
-  email     String   @unique
+model Registration {
+  id               String   @id @default(cuid()) // Unique internal DB ID
+  matricula        String   @unique // The 9-digit random ID
+  nombre           String
+  seudonimo        String?
+  correo           String   @unique
+  telefono         String
+  ubicacion        String
+  
+  rol              String
+  experiencia      Int
+  otrosEventos     String
+  cualesEventos    String?
+  organizacion     String
+  cualOrganizacion String?
+  
+  actividades      String[] // Array of selected activities
+  matchmaking      String
+  expectativas     String
+  area1            String?
+  area2            String?
+  area3            String?
+  importancia      Int
+  
+  createdAt        DateTime @default(now())
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String   // Hashed password
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

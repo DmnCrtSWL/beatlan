@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <section id="convocatoria" class="bg-beatlan-yellow py-20 px-6 border-b-4 border-beatlan-dark">
+  <section id="convocatoria" class="scroll-mt-32 bg-beatlan-yellow py-20 px-6 border-b-4 border-beatlan-dark">
     <div class="max-w-7xl mx-auto">
       
       <div class="text-center mb-16">

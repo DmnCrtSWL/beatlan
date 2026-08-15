@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: beatlan_db
+    environment:
+      POSTGRES_USER: beatlan
+      POSTGRES_PASSWORD: beatlanpassword
+      POSTGRES_DB: beatlan_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: beatlan_server
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://beatlan:beatlanpassword@db:5432/beatlan_db?schema=public
+      - JWT_SECRET=beatlan_super_secret_jwt_key
+      - PORT=3000
+    expose:
+      - "3000"
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: beatlan_client
+    expose:
+      - "80"
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    container_name: beatlan_admin
+    expose:
+      - "80"
+
+  nginx:
+    image: nginx:alpine
+    container_name: beatlan_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - server
+      - client
+      - admin
+
+volumes:
+  pgdata:
