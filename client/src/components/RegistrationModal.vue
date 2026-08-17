@@ -60,7 +60,7 @@ const submitForm = async () => {
     const payload = { ...formData.value }
     payload.actividades = [payload.actividadSeleccionada]
     
-    const response = await fetch('/beatlan/api/register', {
+    const response = await fetch('/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

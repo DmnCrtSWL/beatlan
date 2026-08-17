@@ -3,7 +3,7 @@ import LoginView from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue'
 
 const router = createRouter({
-  history: createWebHistory('/beatlan/admin/'),
+  history: createWebHistory('/admin/'),
   routes: [
     {
       path: '/login',

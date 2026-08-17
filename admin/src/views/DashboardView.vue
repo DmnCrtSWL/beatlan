@@ -14,7 +14,7 @@ const logout = () => {
 const fetchRegistrations = async () => {
   const token = localStorage.getItem('admin_token')
   try {
-    const res = await fetch('/beatlan/api/admin/registrations', {
+    const res = await fetch('/api/admin/registrations', {
       headers: {
         'Authorization': `Bearer ${token}`
       }

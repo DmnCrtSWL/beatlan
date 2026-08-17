@@ -13,7 +13,7 @@ const handleLogin = async () => {
   errorMsg.value = ''
   
   try {
-    const res = await fetch('/beatlan/api/auth/login', {
+    const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: username.value, password: password.value })
